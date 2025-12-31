@@ -1,0 +1,7 @@
+{
+  "name": "Vagabond AI - Smart Itinerary Builder",
+  "description": "A world-class AI travel companion that generates bespoke itineraries, visualizes destinations, and tracks expenses using Gemini's multi-modal intelligence.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
