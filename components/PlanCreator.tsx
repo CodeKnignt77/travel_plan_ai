@@ -33,14 +33,19 @@ export const PlanCreator: React.FC<PlanCreatorProps> = ({ onPlanGenerated }) => 
     e.preventDefault();
     setLoading(true);
     try {
-      const plan = await generateItinerary(
-        formData.origin,
-        formData.destination,
-        formData.duration,
-        formData.budget,
-        formData.preferences
-      );
-      const imageUrl = await generateDestinationImage(formData.destination);
+      // Optimization: Parallelize itinerary generation and image fetching to reduce total latency.
+      // Since image generation doesn't depend on the itinerary content, we can run them concurrently.
+      const [plan, imageUrl] = await Promise.all([
+        generateItinerary(
+          formData.origin,
+          formData.destination,
+          formData.duration,
+          formData.budget,
+          formData.preferences
+        ),
+        generateDestinationImage(formData.destination)
+      ]);
+
       onPlanGenerated({ 
         ...plan, 
         imageUrl, 
