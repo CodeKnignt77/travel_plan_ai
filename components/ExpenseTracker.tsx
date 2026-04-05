@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip as RechartsTooltip } from 'recharts';
 import { Expense } from '../types';
 import { getExchangeRate } from '../services/geminiService';
@@ -132,10 +132,13 @@ export const ExpenseTracker: React.FC = () => {
     });
   };
 
-  const chartData = categories.map(cat => ({
-    name: cat,
-    value: expenses.filter(e => e.category === cat).reduce((acc, curr) => acc + curr.amount, 0) * exchangeRate
-  })).filter(d => d.value > 0);
+  // Memoize chart data to prevent expensive re-calculations on every render
+  const chartData = useMemo(() => {
+    return categories.map(cat => ({
+      name: cat,
+      value: expenses.filter(e => e.category === cat).reduce((acc, curr) => acc + curr.amount, 0) * exchangeRate
+    })).filter(d => d.value > 0);
+  }, [expenses, exchangeRate, categories]);
 
   const addExpense = (e: React.FormEvent) => {
     e.preventDefault();
