@@ -208,8 +208,10 @@ export const getRealTimeInfo = async (destination: string): Promise<string> => {
   }
 };
 
+const rateCache: Record<string, number> = { 'USD': 1.0 };
+
 export const getExchangeRate = async (toCurrency: string): Promise<number> => {
-  if (toCurrency === 'USD') return 1.0;
+  if (rateCache[toCurrency]) return rateCache[toCurrency];
   
   try {
     const response = await ai.models.generateContent({
@@ -222,7 +224,13 @@ export const getExchangeRate = async (toCurrency: string): Promise<number> => {
     
     const rateText = response.text?.replace(/[^0-9.]/g, '') || "1";
     const rate = parseFloat(rateText);
-    return isNaN(rate) ? 1.0 : rate;
+    const finalRate = isNaN(rate) ? 1.0 : rate;
+
+    if (!isNaN(rate)) {
+      rateCache[toCurrency] = finalRate;
+    }
+
+    return finalRate;
   } catch (err) {
     console.error("Failed to fetch exchange rate", err);
     return 1.0;

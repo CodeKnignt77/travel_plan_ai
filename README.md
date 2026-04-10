@@ -64,6 +64,15 @@ To use Vagabond AI, you'll need an API key from Google AI Studio:
 4. Click **"Create API key in new project"**.
 5. Copy the generated key and add it to your `.env.local` file.
 
+## ⚡ Performance & Optimization (Bolt Philosophy)
+
+Vagabond AI follows the **Bolt** philosophy: speed is a feature. We implement measurable, targeted optimizations to keep the experience lightning-fast.
+
+### 🚀 Optimizations
+- **AI Utility Caching**: Exchange rates fetched via Gemini are cached in-memory, eliminating redundant 2-3s API calls when toggling currencies.
+- **Parallelized AI Generation**: Itinerary text and destination imagery are generated concurrently using `Promise.all` to minimize total critical path latency.
+- **Efficient UI Rendering**: Expensive data transformations for the expense analytics are memoized to ensure 60fps interactions even with large transaction lists.
+
 ## 🌐 View in AI Studio
 
 You can also view and interact with the app directly in AI Studio:
