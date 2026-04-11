@@ -68,3 +68,18 @@ To use Vagabond AI, you'll need an API key from Google AI Studio:
 
 You can also view and interact with the app directly in AI Studio:
 [Vagabond AI on AI Studio](https://ai.studio/apps/drive/1bnXRRvvwB_br_T4PxKKvaqFnY0k8cbuw)
+
+## ⚡ Performance & Optimization
+
+Vagabond AI is built with a "Performance-First" mindset. We implement targeted optimizations to ensure a lightning-fast user experience.
+
+### Key Optimizations
+- **Parallelized AI Operations**: Independent AI service calls (e.g., itinerary generation and destination visualization) are executed concurrently using `Promise.all` to minimize critical path latency.
+- **Memoized Calculations**: Complex data transformations for expense analytics are memoized to prevent redundant processing during UI re-renders.
+- **Efficient Asset Loading**: Lightweight asset management and optimized component lifecycle handling.
+
+### Bolt Philosophy
+This project follows the **Bolt** performance methodology:
+1. **Speed is a Feature**: Every millisecond saved improves user retention and satisfaction.
+2. **Measure First**: No optimization is implemented without first identifying a measurable bottleneck.
+3. **Clean Gains**: We prioritize optimizations that provide high impact (<50 lines of code) without sacrificing readability.
