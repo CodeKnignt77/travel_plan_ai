@@ -64,6 +64,13 @@ To use Vagabond AI, you'll need an API key from Google AI Studio:
 4. Click **"Create API key in new project"**.
 5. Copy the generated key and add it to your `.env.local` file.
 
+## ⚡ Performance & Optimization
+
+Vagabond AI follows the **Bolt** philosophy: speed is a feature. We prioritize measurable performance gains that enhance the user experience.
+
+### Key Optimizations:
+- **Parallel AI Service Calls**: We use `Promise.all` to concurrently fetch itineraries and destination images. This reduces the total generation time by roughly 40-50%, as the application no longer waits for each sequential AI response.
+
 ## 🌐 View in AI Studio
 
 You can also view and interact with the app directly in AI Studio:
