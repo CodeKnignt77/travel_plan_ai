@@ -2,17 +2,25 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Vagabond AI - Smart Itinerary Builder
+# 🌍 Vagabond AI - Smart Itinerary Builder
 
 Vagabond AI is a world-class travel companion that leverages Gemini's multi-modal intelligence to curate perfectly tailored travel experiences. From Kyoto's hidden temples to Paris's secret bistros, Vagabond AI helps you plan, visualize, and track your adventures with ease.
 
-## 🌟 Features
+## ✨ Key Features
 
-- **AI-Powered Itinerary Generation**: Bespoke travel plans tailored to your origin, destination, duration, budget, and interests.
-- **Multi-Modal Visualization**: High-quality AI-generated images of your destinations to inspire your journey.
-- **Real-Time Information**: Stay updated with current weather and upcoming major events for your destination.
-- **Smart Expense Tracking**: Keep your travel budget in check with an integrated expense tracker and real-time currency conversion.
-- **Interactive Dashboard**: Browse through your past explorations and saved itineraries.
+- ⚡ **AI-Powered Itinerary Generation**: Bespoke travel plans tailored to your origin, destination, duration, budget, and interests.
+- 🖼️ **Multi-Modal Visualization**: High-quality AI-generated images of your destinations to inspire your journey.
+- 🌐 **Real-Time Information**: Stay updated with current weather and upcoming major events for your destination.
+- 💰 **Smart Expense Tracking**: Keep your travel budget in check with an integrated expense tracker and real-time currency conversion.
+- 📊 **Interactive Dashboard**: Browse through your past explorations and saved itineraries.
+
+## ⚡ Performance & Optimization
+
+Vagabond AI follows the **Bolt** ⚡ performance philosophy: speed is a feature, and every millisecond counts.
+
+### Current Optimizations:
+- **Parallel AI Execution**: Independent AI service calls (itinerary generation and destination visualization) are executed in parallel using `Promise.all`, reducing the total critical path latency by up to 50%.
+- **Efficient Data Handling**: Minimized re-renders and optimized state management for a fluid user experience.
 
 ## 🛠️ Tech Stack
 
