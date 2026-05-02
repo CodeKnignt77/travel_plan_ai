@@ -33,14 +33,20 @@ export const PlanCreator: React.FC<PlanCreatorProps> = ({ onPlanGenerated }) => 
     e.preventDefault();
     setLoading(true);
     try {
-      const plan = await generateItinerary(
-        formData.origin,
-        formData.destination,
-        formData.duration,
-        formData.budget,
-        formData.preferences
-      );
-      const imageUrl = await generateDestinationImage(formData.destination);
+      // ⚡ Bolt Optimization: Parallelize AI calls to reduce total latency.
+      // By firing generateItinerary and generateDestinationImage at the same time,
+      // we reduce the critical path to the duration of the longest call.
+      const [plan, imageUrl] = await Promise.all([
+        generateItinerary(
+          formData.origin,
+          formData.destination,
+          formData.duration,
+          formData.budget,
+          formData.preferences
+        ),
+        generateDestinationImage(formData.destination)
+      ]);
+
       onPlanGenerated({ 
         ...plan, 
         imageUrl, 
