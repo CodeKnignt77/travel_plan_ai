@@ -22,6 +22,25 @@ Vagabond AI is a world-class travel companion that leverages Gemini's multi-moda
 - **Data Visualization**: [Recharts](https://recharts.org/)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 
+## ⚡ Performance & Optimization
+
+Vagabond AI is built with a "Performance First" philosophy. Every millisecond of latency is carefully considered to ensure a snappy, responsive user experience.
+
+### Key Optimizations
+
+- **Parallel AI Execution**: Independent asynchronous AI service calls (itinerary generation and destination image generation) are parallelized using `Promise.all`. This reduces the total critical path latency to the duration of the single longest request, rather than the sum of all requests.
+- **Efficient Data Handling**: Large AI-generated payloads are handled with custom JSON repair mechanisms to ensure robustness without sacrificing speed.
+- **Lightning-Fast Builds**: Powered by Vite for near-instant HMR and highly optimized production assets.
+
+### Bolt Philosophy
+
+This project adheres to the **Bolt** performance methodology:
+1. **Measure First**: Establish baselines before optimizing.
+2. **Impact-Driven**: Focus on optimizations with measurable improvements (>50ms reduction).
+3. **Readability Matters**: Never sacrifice code clarity for micro-optimizations.
+
+---
+
 ## 🚀 Local Development
 
 ### Prerequisites
