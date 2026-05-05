@@ -1,10 +1,21 @@
 <div align="center">
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+
+# ⚡ Vagabond AI - Smart Itinerary Builder
+*Next-Gen Travel Planning Powered by Gemini Intelligence*
 </div>
 
-# Vagabond AI - Smart Itinerary Builder
-
 Vagabond AI is a world-class travel companion that leverages Gemini's multi-modal intelligence to curate perfectly tailored travel experiences. From Kyoto's hidden temples to Paris's secret bistros, Vagabond AI helps you plan, visualize, and track your adventures with ease.
+
+---
+
+## ⚡ Performance & Optimization
+
+Vagabond AI is built with a "Bolt" performance philosophy—where every millisecond counts. We've implemented several optimizations to ensure a lightning-fast experience:
+
+- **Parallel AI Execution**: Independent AI service calls (itinerary generation, destination visualization) are executed in parallel using `Promise.all`, reducing perceived latency by up to 50%.
+- **Efficient Data Handling**: Expensive data transformations for visualizations are memoized using React's `useMemo` to prevent unnecessary re-calculations during component updates.
+- **Optimized Asset Delivery**: Leveraging lightweight Tailwind CSS and ESM-based dependency loading for fast initial page loads.
 
 ## 🌟 Features
 
@@ -16,7 +27,7 @@ Vagabond AI is a world-class travel companion that leverages Gemini's multi-moda
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: [React](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Frontend**: [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
 - **AI Intelligence**: [Google Gemini API](https://ai.google.dev/gemini-api) (`gemini-3-flash-preview` and `gemini-2.5-flash-image`)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Data Visualization**: [Recharts](https://recharts.org/)
@@ -52,7 +63,7 @@ Vagabond AI is a world-class travel companion that leverages Gemini's multi-moda
    ```bash
    npm run dev
    ```
-   The app will be available at `http://localhost:5173`.
+   The app will be available at `http://localhost:3000`.
 
 ## 🔑 Obtaining a Gemini API Key
 
