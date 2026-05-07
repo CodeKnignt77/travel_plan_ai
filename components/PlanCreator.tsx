@@ -32,15 +32,21 @@ export const PlanCreator: React.FC<PlanCreatorProps> = ({ onPlanGenerated }) => 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    // Bolt: Parallelizing independent AI service calls to reduce critical path latency.
+    // Expected impact: ~40-50% reduction in total generation time.
+    console.time('AI_Service_Calls_Parallel');
     try {
-      const plan = await generateItinerary(
-        formData.origin,
-        formData.destination,
-        formData.duration,
-        formData.budget,
-        formData.preferences
-      );
-      const imageUrl = await generateDestinationImage(formData.destination);
+      const [plan, imageUrl] = await Promise.all([
+        generateItinerary(
+          formData.origin,
+          formData.destination,
+          formData.duration,
+          formData.budget,
+          formData.preferences
+        ),
+        generateDestinationImage(formData.destination)
+      ]);
+      console.timeEnd('AI_Service_Calls_Parallel');
       onPlanGenerated({ 
         ...plan, 
         imageUrl, 
