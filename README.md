@@ -2,25 +2,37 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Vagabond AI - Smart Itinerary Builder
+# Vagabond AI - Smart Itinerary Builder ⚡
 
 Vagabond AI is a world-class travel companion that leverages Gemini's multi-modal intelligence to curate perfectly tailored travel experiences. From Kyoto's hidden temples to Paris's secret bistros, Vagabond AI helps you plan, visualize, and track your adventures with ease.
 
 ## 🌟 Features
 
-- **AI-Powered Itinerary Generation**: Bespoke travel plans tailored to your origin, destination, duration, budget, and interests.
-- **Multi-Modal Visualization**: High-quality AI-generated images of your destinations to inspire your journey.
-- **Real-Time Information**: Stay updated with current weather and upcoming major events for your destination.
-- **Smart Expense Tracking**: Keep your travel budget in check with an integrated expense tracker and real-time currency conversion.
-- **Interactive Dashboard**: Browse through your past explorations and saved itineraries.
+- **⚡ AI-Powered Itinerary Generation**: Bespoke travel plans tailored to your origin, destination, duration, budget, and interests.
+- **🖼️ Multi-Modal Visualization**: High-quality AI-generated images of your destinations to inspire your journey.
+- **🌐 Real-Time Information**: Stay updated with current weather and upcoming major events for your destination via Google Search grounding.
+- **💰 Smart Expense Tracking**: Keep your travel budget in check with an integrated expense tracker and real-time currency conversion.
+- **📊 Interactive Dashboard**: Browse through your past explorations and saved itineraries.
+
+## ⚡ Performance & Optimization
+
+Vagabond AI follows the **Bolt** philosophy: speed is a feature. We continuously optimize the application to ensure a snappy user experience.
+
+### Key Optimizations:
+- **Parallel AI Execution**: Independent AI service calls (itinerary generation and destination visualization) are executed concurrently using `Promise.all`, reducing total critical path latency by up to 50%.
+- **Efficient Data Handling**: Minimized re-renders and optimized state management across components.
+- **Real-Time Syncing**: Efficiently fetching and caching exchange rates and real-time travel info.
+
+### Measuring Performance:
+You can monitor AI request performance in the browser's developer console. Look for the `AI_Service_Calls_Parallel` timer to see the impact of our parallelization strategy.
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: [React](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Frontend**: [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
 - **AI Intelligence**: [Google Gemini API](https://ai.google.dev/gemini-api) (`gemini-3-flash-preview` and `gemini-2.5-flash-image`)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Data Visualization**: [Recharts](https://recharts.org/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Language**: [TypeScript 5.8](https://www.typescriptlang.org/)
 
 ## 🚀 Local Development
 
@@ -52,7 +64,7 @@ Vagabond AI is a world-class travel companion that leverages Gemini's multi-moda
    ```bash
    npm run dev
    ```
-   The app will be available at `http://localhost:5173`.
+   The app will be available at `http://localhost:3000`.
 
 ## 🔑 Obtaining a Gemini API Key
 
