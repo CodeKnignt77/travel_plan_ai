@@ -49,6 +49,9 @@ const AIRPORT_MAP: Record<string, string> = {
 const REVERSE_AIRLINE_MAP = Object.fromEntries(Object.entries(AIRLINE_MAP).map(([k, v]) => [v.toLowerCase(), k]));
 const REVERSE_AIRPORT_MAP = Object.fromEntries(Object.entries(AIRPORT_MAP).map(([k, v]) => [v.toLowerCase(), k]));
 
+const CATEGORIES = ['Flights', 'Accommodation', 'Food', 'Transport', 'Activities', 'Other'];
+const COLORS = ['#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#64748b'];
+
 const getAlternateInfo = (value: string | undefined, map: Record<string, string>, reverseMap: Record<string, string>) => {
   if (!value) return null;
   const upperVal = value.toUpperCase();
@@ -110,10 +113,10 @@ export const ExpenseTracker: React.FC = () => {
     arrivalAirport: ''
   });
 
-  const categories = ['Flights', 'Accommodation', 'Food', 'Transport', 'Activities', 'Other'];
-  const colors = ['#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#64748b'];
-
-  const selectedCurrencySymbol = CURRENCIES.find(c => c.code === displayCurrency)?.symbol || '$';
+  const selectedCurrencySymbol = React.useMemo(() =>
+    CURRENCIES.find(c => c.code === displayCurrency)?.symbol || '$',
+    [displayCurrency]
+  );
 
   useEffect(() => {
     const updateRate = async () => {
@@ -125,17 +128,22 @@ export const ExpenseTracker: React.FC = () => {
     updateRate();
   }, [displayCurrency]);
 
-  const convert = (amount: number) => {
+  const convert = React.useCallback((amount: number) => {
     return (amount * exchangeRate).toLocaleString(undefined, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
-  };
+  }, [exchangeRate]);
 
-  const chartData = categories.map(cat => ({
-    name: cat,
-    value: expenses.filter(e => e.category === cat).reduce((acc, curr) => acc + curr.amount, 0) * exchangeRate
-  })).filter(d => d.value > 0);
+  // Bolt: Using useMemo to prevent expensive chart data calculations on every render.
+  // This ensures the chart only updates when expenses or exchange rates actually change.
+  const chartData = React.useMemo(() =>
+    CATEGORIES.map(cat => ({
+      name: cat,
+      value: expenses.filter(e => e.category === cat).reduce((acc, curr) => acc + curr.amount, 0) * exchangeRate
+    })).filter(d => d.value > 0),
+    [expenses, exchangeRate]
+  );
 
   const addExpense = (e: React.FormEvent) => {
     e.preventDefault();
@@ -207,7 +215,7 @@ export const ExpenseTracker: React.FC = () => {
                     value={newExp.category}
                     onChange={e => setNewExp({...newExp, category: e.target.value})}
                   >
-                    {categories.map(c => <option key={c} value={c}>{c}</option>)}
+                    {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                 </div>
                 <div>
@@ -399,7 +407,7 @@ export const ExpenseTracker: React.FC = () => {
                   {chartData.map((entry, index) => (
                     <Cell 
                       key={`cell-${index}`} 
-                      fill={colors[index % colors.length]}
+                      fill={COLORS[index % COLORS.length]}
                       className="hover:opacity-80 transition-opacity cursor-pointer outline-none" 
                     />
                   ))}
