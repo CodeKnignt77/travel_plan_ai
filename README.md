@@ -14,6 +14,13 @@ Vagabond AI is a world-class travel companion that leverages Gemini's multi-moda
 - **Smart Expense Tracking**: Keep your travel budget in check with an integrated expense tracker and real-time currency conversion.
 - **Interactive Dashboard**: Browse through your past explorations and saved itineraries.
 
+## ⚡ Performance & Optimization
+
+Vagabond AI is built with a performance-first mindset, following the **Bolt** philosophy. Recent optimizations include:
+
+- **Parallel AI Execution**: Independent asynchronous service calls (e.g., itinerary generation and destination visualization) are executed concurrently using `Promise.all`, reducing critical path latency by up to 50%.
+- **Efficient Data Handling**: Optimized state updates and component rendering to ensure a smooth user experience even with complex travel plans.
+
 ## 🛠️ Tech Stack
 
 - **Frontend**: [React](https://react.dev/) + [Vite](https://vitejs.dev/)
