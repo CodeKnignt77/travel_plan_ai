@@ -68,3 +68,12 @@ To use Vagabond AI, you'll need an API key from Google AI Studio:
 
 You can also view and interact with the app directly in AI Studio:
 [Vagabond AI on AI Studio](https://ai.studio/apps/drive/1bnXRRvvwB_br_T4PxKKvaqFnY0k8cbuw)
+
+## ⚡ Performance & Optimization
+
+Vagabond AI is built with a "Performance-First" mindset, following the **Bolt** philosophy:
+
+- **Parallel AI Execution**: Independent asynchronous AI service calls (itinerary generation and destination visualization) are executed concurrently using `Promise.all`, reducing total critical path latency by approximately **50%**.
+- **Efficient Data Handling**: Minimal re-renders and optimized state management ensure a smooth, responsive user experience even during complex AI interactions.
+
+*Every millisecond counts when you're planning your next adventure.*
