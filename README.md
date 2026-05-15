@@ -9,6 +9,7 @@ Vagabond AI is a world-class travel companion that leverages Gemini's multi-moda
 ## 🌟 Features
 
 - **AI-Powered Itinerary Generation**: Bespoke travel plans tailored to your origin, destination, duration, budget, and interests.
+- **Optimized AI Performance**: Parallelized execution of AI service calls for faster itinerary generation.
 - **Multi-Modal Visualization**: High-quality AI-generated images of your destinations to inspire your journey.
 - **Real-Time Information**: Stay updated with current weather and upcoming major events for your destination.
 - **Smart Expense Tracking**: Keep your travel budget in check with an integrated expense tracker and real-time currency conversion.
@@ -21,6 +22,14 @@ Vagabond AI is a world-class travel companion that leverages Gemini's multi-moda
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Data Visualization**: [Recharts](https://recharts.org/)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
+
+## ⚡ Performance & Optimization
+
+Vagabond AI is built with a "Bolt" performance philosophy—optimizing for speed and efficiency at every turn.
+
+- **Parallel AI Execution**: Independent AI service calls (itinerary generation and image creation) are executed in parallel using `Promise.all`, reducing total critical path latency by up to 50%.
+- **Efficient Data Handling**: Expensive calculations and derived state, such as expense analytics and chart data, are memoized using `useMemo` to prevent redundant re-renders.
+- **Lightweight Architecture**: Leveraging Vite and ESM-based dependency loading for near-instant development starts and optimized production builds.
 
 ## 🚀 Local Development
 
