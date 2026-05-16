@@ -80,6 +80,9 @@ const InfoTooltip: React.FC<TooltipProps> = ({ content, children }) => {
   );
 };
 
+const CATEGORIES = ['Flights', 'Accommodation', 'Food', 'Transport', 'Activities', 'Other'];
+const COLORS = ['#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#64748b'];
+
 export const ExpenseTracker: React.FC = () => {
   const [expenses, setExpenses] = useState<Expense[]>([
     { 
@@ -110,10 +113,10 @@ export const ExpenseTracker: React.FC = () => {
     arrivalAirport: ''
   });
 
-  const categories = ['Flights', 'Accommodation', 'Food', 'Transport', 'Activities', 'Other'];
-  const colors = ['#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#64748b'];
-
-  const selectedCurrencySymbol = CURRENCIES.find(c => c.code === displayCurrency)?.symbol || '$';
+  const selectedCurrencySymbol = React.useMemo(() =>
+    CURRENCIES.find(c => c.code === displayCurrency)?.symbol || '$',
+    [displayCurrency]
+  );
 
   useEffect(() => {
     const updateRate = async () => {
@@ -132,10 +135,11 @@ export const ExpenseTracker: React.FC = () => {
     });
   };
 
-  const chartData = categories.map(cat => ({
+  // Memoize chart data to avoid expensive recalculation on every render
+  const chartData = React.useMemo(() => CATEGORIES.map(cat => ({
     name: cat,
     value: expenses.filter(e => e.category === cat).reduce((acc, curr) => acc + curr.amount, 0) * exchangeRate
-  })).filter(d => d.value > 0);
+  })).filter(d => d.value > 0), [expenses, exchangeRate]);
 
   const addExpense = (e: React.FormEvent) => {
     e.preventDefault();
@@ -207,7 +211,7 @@ export const ExpenseTracker: React.FC = () => {
                     value={newExp.category}
                     onChange={e => setNewExp({...newExp, category: e.target.value})}
                   >
-                    {categories.map(c => <option key={c} value={c}>{c}</option>)}
+                    {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                 </div>
                 <div>
@@ -399,7 +403,7 @@ export const ExpenseTracker: React.FC = () => {
                   {chartData.map((entry, index) => (
                     <Cell 
                       key={`cell-${index}`} 
-                      fill={colors[index % colors.length]}
+                      fill={COLORS[index % COLORS.length]}
                       className="hover:opacity-80 transition-opacity cursor-pointer outline-none" 
                     />
                   ))}
