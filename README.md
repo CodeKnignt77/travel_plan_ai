@@ -22,6 +22,26 @@ Vagabond AI is a world-class travel companion that leverages Gemini's multi-moda
 - **Data Visualization**: [Recharts](https://recharts.org/)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 
+## ⚡ Performance & Optimization
+
+Vagabond AI follows the **Bolt** philosophy: speed is a feature, and every millisecond counts.
+
+- **Parallel AI Execution**: Independent AI service calls (itinerary generation and destination visualization) are executed in parallel using `Promise.all`, reducing total critical-path latency by up to 50%.
+- **Efficient Data Handling**: The application uses optimized data structures to ensure smooth rendering of complex itineraries and real-time expense tracking.
+- **Smart Grounding**: Real-time information is fetched and processed efficiently to provide up-to-date travel advice without compromising on performance.
+
+## 📂 Project Structure
+
+```text
+├── components/          # React components (ExpenseTracker, PlanCreator, etc.)
+├── services/            # AI and data service logic (Gemini API integration)
+├── App.tsx              # Main application shell and routing
+├── index.tsx            # Entry point for the React application
+├── types.ts             # TypeScript interface definitions
+├── vite.config.ts       # Vite configuration and environment mapping
+└── README.md            # Project documentation
+```
+
 ## 🚀 Local Development
 
 ### Prerequisites
